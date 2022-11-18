@@ -6,20 +6,20 @@
 /*   By: msekhsou <msekhsou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:23:51 by msekhsou          #+#    #+#             */
-/*   Updated: 2022/11/17 04:09:33 by msekhsou         ###   ########.fr       */
+/*   Updated: 2022/11/18 05:20:50 by msekhsou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
 	char	*str;
 
 	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (str == 0)
+	if (!str)
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -36,7 +36,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int i)
+char	*ft_strchr(char *s, int i)
 {
 	while (*s)
 	{
@@ -59,7 +59,7 @@ char	*ft_strchr(const char *s, int i)
 	return (0);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	int		i;
 	int		j;
@@ -77,7 +77,7 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -86,7 +86,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = 0;
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
+	if (!str)
 		return (NULL);
 	while (s1[i] != '\0')
 	{
@@ -99,5 +99,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	str[i + j] = '\0';
+	free(s1);
 	return (str);
 }
